@@ -1,18 +1,23 @@
 {
-  "name": "tw93",
-  "author": "Tw93<tw93@qq.com>",
-  "homepage": "https://tw93.fun",
+  "name": "zhangzihao-blog",
+  "author": "zhangzihao",
+  "homepage": "https://ZZH-0207.github.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tw93/tw93.github.io"
+    "url": "https://github.com/ZZH-0207/ZZH-0207.github.io"
   },
   "bugs": {
-    "url": "https://github.com/tw93/tw93.github.io/issues"
+    "url": "https://github.com/ZZH-0207/ZZH-0207.github.io/issues"
   },
   "scripts": {
     "prep": "gem install bundler && bundle install",
-    "dev": "bundle exec jekyll serve --watch --trace",
+    "dev": "bundle exec jekyll serve --watch --trace --livereload",
+    "clean": "if exist _site rmdir /s /q _site && if exist .jekyll-cache rmdir /s /q .jekyll-cache",
     "start": "npm run dev",
-    "build": "bundle exec jekyll build"
+    "build": "bundle exec jekyll build",
+    "min": "uglifyjs ./js/index.js -o ./js/index.min.js  --comments all"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.5"
   }
 }
