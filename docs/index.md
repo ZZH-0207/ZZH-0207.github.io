@@ -1,26 +1,76 @@
----
-layout: home
+<script setup>
+import { data as posts } from './posts.data.ts'
 
-hero:
-  name: "ZZH 的博客"
-  text: "Python 开发工程师"
-  tagline: "记录学习，分享生活，探索未知"
-  actions:
-    - theme: brand
-      text: 快速开始阅读
-      link: /posts/2026-1-23-Note-personal-blog
-    - theme: alt
-      text: 关于我
-      link: /about
+function formatDate(date) {
+  return new Date(date).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+</script>
 
-features:
-  - title: Python 技术
-    details: 深入探讨 Python 核心机制、Web 开发与自动化运维。
-    icon: 🐍
-  - title: 全栈探索
-    details: 从后端延伸到前端，记录我的全栈学习之路。
-    icon: 💻
-  - title: 生活随笔
-    details: 技术之外，关于生活、阅读与思考的点滴记录。
-    icon: ☕
----
+<div class="posts-container">
+  <h1>最新文章</h1>
+  <div v-for="post in posts" :key="post.url" class="post-item">
+    <div class="post-header">
+      <a :href="post.url" class="post-title">{{ post.title }}</a>
+      <span class="post-date">{{ formatDate(post.date) }}</span>
+    </div>
+    <div class="post-excerpt" v-if="post.excerpt" v-html="post.excerpt"></div>
+    <div class="post-tags" v-if="post.tags">
+      <span v-for="tag in post.tags" :key="tag" class="tag">#{{ tag }}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.post-item {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 2rem;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--vp-c-brand);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.post-title:hover {
+  color: var(--vp-c-brand-dark);
+}
+
+.post-date {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+}
+
+.post-excerpt {
+  margin: 1rem 0;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+}
+
+.post-tags {
+  margin-top: 1rem;
+}
+
+.tag {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-bg-soft);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+}
+</style>
