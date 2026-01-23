@@ -8,9 +8,9 @@ export default createContentLoader('posts/*.md', {
     return rawData
       .map((page) => {
         return {
-          title: page.frontmatter.title || 'Untitled',
+          title: (page.frontmatter && page.frontmatter.title) || 'Untitled',
           url: page.url,
-          date: page.frontmatter.date,
+          date: (page.frontmatter && page.frontmatter.date) || null,
           excerpt: page.excerpt,
           frontmatter: page.frontmatter || {}
         }

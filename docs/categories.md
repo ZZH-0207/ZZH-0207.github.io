@@ -46,8 +46,8 @@ function formatDate(date) {
     <div v-else class="post-list">
       <div v-for="(post, index) in filteredPosts" :key="index" class="post-item">
         <div v-if="post">
-           <a :href="post.url" class="post-title">{{ post.title || post.frontmatter?.title || 'Untitled' }}</a>
-           <span class="post-date">{{ formatDate(post.date || post.frontmatter?.date) }}</span>
+           <a :href="post?.url" class="post-title">{{ post?.title || post?.frontmatter?.title || 'Untitled' }}</a>
+           <span class="post-date">{{ formatDate(post?.date || post?.frontmatter?.date) }}</span>
         </div>
       </div>
     </div>
