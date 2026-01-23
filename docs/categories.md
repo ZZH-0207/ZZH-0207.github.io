@@ -17,11 +17,8 @@ const filteredPosts = computed(() => {
 
 function formatDate(date) {
   if (!date) return ''
-  return new Date(date).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  const d = new Date(date)
+  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 }
 </script>
 
@@ -44,7 +41,7 @@ function formatDate(date) {
   </div>
   <div v-else class="post-list">
     <div v-for="(post, index) in filteredPosts" :key="index" class="post-item">
-      <div v-if="post">
+      <div v-if="post" class="post-row">
           <a :href="post?.url" class="post-title">{{ post?.title || post?.frontmatter?.title || 'Untitled' }}</a>
           <span class="post-date">{{ formatDate(post?.date || post?.frontmatter?.date) }}</span>
       </div>
@@ -88,11 +85,14 @@ function formatDate(date) {
 }
 
 .post-item {
+  border-bottom: 1px solid var(--vp-c-divider-light);
+}
+
+.post-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--vp-c-divider-light);
 }
 
 .post-title {
@@ -107,8 +107,10 @@ function formatDate(date) {
 }
 
 .post-date {
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
+  font-size: 1.1rem;
+  color: var(--vp-c-text-1);
+  white-space: nowrap;
+  margin-left: 1rem;
 }
 
 .empty-state {

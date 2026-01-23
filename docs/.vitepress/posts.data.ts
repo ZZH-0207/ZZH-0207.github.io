@@ -7,18 +7,38 @@ export default createContentLoader('posts/*.md', {
   transform(rawData) {
     return rawData
       .map((page) => {
+        // Parse filename from URL for metadata
+        // Expected format: /posts/YYYY-M-D-Category-Title
+        const filenameMatch = page.url.match(/\/(\d{4})-(\d{1,2})-(\d{1,2})-([^-]+)-(.+?)(?:\.html)?$/)
+        
+        let title = (page.frontmatter && page.frontmatter.title) || 'Untitled'
+        let date = (page.frontmatter && page.frontmatter.date) ? new Date(page.frontmatter.date) : null
+        let category = (page.frontmatter && page.frontmatter.category) || 'Note'
+
+        if (filenameMatch) {
+          const [_, year, month, day, cat, slug] = filenameMatch
+          // Override if filename matches pattern
+          title = slug
+          date = new Date(`${year}-${month}-${day}`)
+          category = cat
+        }
+
         return {
-          title: (page.frontmatter && page.frontmatter.title) || 'Untitled',
+          title,
           url: page.url,
-          date: (page.frontmatter && page.frontmatter.date) || null,
+          date,
           excerpt: page.excerpt,
-          frontmatter: page.frontmatter || {}
+          frontmatter: {
+            ...page.frontmatter,
+            title,
+            date,
+            category
+          }
         }
       })
+      .filter(page => page.title !== 'Untitled') // Filter out pages that didn't parse correctly if needed
       .sort((a, b) => {
-        const dateA = (a.frontmatter && a.frontmatter.date) ? new Date(a.frontmatter.date) : new Date(0)
-        const dateB = (b.frontmatter && b.frontmatter.date) ? new Date(b.frontmatter.date) : new Date(0)
-        return +dateB - +dateA
+        return +b.date - +a.date
       })
   }
 })

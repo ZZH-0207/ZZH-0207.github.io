@@ -3,25 +3,17 @@ import { data as posts } from './.vitepress/posts.data.ts'
 
 function formatDate(date) {
   if (!date) return ''
-  return new Date(date).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  const d = new Date(date)
+  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 }
 </script>
 
 <div class="posts-container">
-  <h1>最新文章</h1>
   <div v-for="(post, index) in posts" :key="post ? post.url : index" class="post-item">
     <template v-if="post">
       <div class="post-header">
         <a :href="post?.url" class="post-title">{{ post?.title || post?.frontmatter?.title || 'Untitled' }}</a>
         <span class="post-date">{{ formatDate(post?.date || post?.frontmatter?.date) }}</span>
-      </div>
-      <div class="post-excerpt" v-if="post?.excerpt" v-html="post.excerpt"></div>
-      <div class="post-tags" v-if="post?.frontmatter?.tags">
-        <span v-for="tag in post.frontmatter.tags" :key="tag" class="tag">#{{ tag }}</span>
       </div>
     </template>
   </div>
@@ -35,45 +27,31 @@ function formatDate(date) {
 }
 
 .post-item {
-  margin-bottom: 3rem;
-  border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .post-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--vp-c-brand);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
   text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
 .post-title:hover {
-  color: var(--vp-c-brand-dark);
+  color: var(--vp-c-brand);
 }
 
 .post-date {
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
-}
-
-.post-excerpt {
-  margin: 1rem 0;
-  line-height: 1.6;
+  font-size: 1.2rem;
   color: var(--vp-c-text-1);
-}
-
-.post-tags {
-  margin-top: 1rem;
-}
-
-.tag {
-  font-size: 0.8rem;
-  color: var(--vp-c-text-2);
-  background-color: var(--vp-c-bg-soft);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  margin-right: 0.5rem;
+  margin-left: 1rem;
 }
 </style>
