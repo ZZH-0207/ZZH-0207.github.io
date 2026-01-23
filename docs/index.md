@@ -2,6 +2,7 @@
 import { data as posts } from './.vitepress/posts.data.ts'
 
 function formatDate(date) {
+  if (!date) return ''
   return new Date(date).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
@@ -15,11 +16,11 @@ function formatDate(date) {
   <div v-for="(post, index) in posts" :key="post ? post.url : index" class="post-item">
     <template v-if="post">
       <div class="post-header">
-        <a :href="post?.url" class="post-title">{{ (post?.frontmatter?.title) || 'Untitled' }}</a>
-        <span class="post-date">{{ formatDate(post?.frontmatter?.date) }}</span>
+        <a :href="post.url" class="post-title">{{ post.title || post.frontmatter?.title || 'Untitled' }}</a>
+        <span class="post-date">{{ formatDate(post.date || post.frontmatter?.date) }}</span>
       </div>
-      <div class="post-excerpt" v-if="post?.excerpt" v-html="post.excerpt"></div>
-      <div class="post-tags" v-if="post?.frontmatter?.tags">
+      <div class="post-excerpt" v-if="post.excerpt" v-html="post.excerpt"></div>
+      <div class="post-tags" v-if="post.frontmatter?.tags">
         <span v-for="tag in post.frontmatter.tags" :key="tag" class="tag">#{{ tag }}</span>
       </div>
     </template>
