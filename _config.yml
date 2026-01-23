@@ -9,7 +9,7 @@ timezone: Asia/Shanghai
 
 # Social Media and External URLs
 github: ZZH-0207
-zhihu: -
+zhihu: 123
 menu:
   - title: "关于我"
     url: "/about.html"
