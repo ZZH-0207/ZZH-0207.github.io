@@ -6,20 +6,17 @@ const categories = ['Code', 'Note', 'Paper']
 const activeCategory = ref('Code')
 
 const filteredPosts = computed(() => {
+  if (!posts || !Array.isArray(posts)) return []
   return posts.filter(post => {
-    if (!post || !post.category) return false
-    const postCategory = post.category || 'Note'
+    if (!post) return false
+    const fm = post.frontmatter || {}
+    const postCategory = fm.category || 'Note'
     return postCategory.toLowerCase() === activeCategory.value.toLowerCase()
   })
 })
 
 function formatDate(date) {
-  if (!date) return ''
-  return new Date(date).toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  return ''
 }
 </script>
 
@@ -42,9 +39,11 @@ function formatDate(date) {
     </div>
     
     <div v-else class="post-list">
-      <div v-for="post in filteredPosts" :key="post.url" class="post-item">
-        <a :href="post.url" class="post-title">{{ post?.title || 'Untitled' }}</a>
-        <span class="post-date">{{ formatDate(post?.date) }}</span>
+      <div v-for="(post, index) in filteredPosts" :key="index" class="post-item">
+        <div v-if="post">
+           <a :href="post?.url" class="post-title">{{ (post?.frontmatter?.title) || 'Untitled' }}</a>
+           <span class="post-date">{{ formatDate(post?.frontmatter?.date) }}</span>
+        </div>
       </div>
     </div>
   </div>

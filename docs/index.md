@@ -12,15 +12,17 @@ function formatDate(date) {
 
 <div class="posts-container">
   <h1>最新文章</h1>
-  <div v-for="post in posts" :key="post.url" class="post-item">
-    <div class="post-header">
-      <a :href="post.url" class="post-title">{{ post.title }}</a>
-      <span class="post-date">{{ formatDate(post.date) }}</span>
-    </div>
-    <div class="post-excerpt" v-if="post.excerpt" v-html="post.excerpt"></div>
-    <div class="post-tags" v-if="post.tags">
-      <span v-for="tag in post.tags" :key="tag" class="tag">#{{ tag }}</span>
-    </div>
+  <div v-for="(post, index) in posts" :key="post ? post.url : index" class="post-item">
+    <template v-if="post">
+      <div class="post-header">
+        <a :href="post?.url" class="post-title">{{ (post?.frontmatter?.title) || 'Untitled' }}</a>
+        <span class="post-date">{{ formatDate(post?.frontmatter?.date) }}</span>
+      </div>
+      <div class="post-excerpt" v-if="post?.excerpt" v-html="post.excerpt"></div>
+      <div class="post-tags" v-if="post?.frontmatter?.tags">
+        <span v-for="tag in post.frontmatter.tags" :key="tag" class="tag">#{{ tag }}</span>
+      </div>
+    </template>
   </div>
 </div>
 
