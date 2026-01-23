@@ -1,30 +1,20 @@
 # Site Information
-title: Tw93
-description: "一个喜欢开源和折腾的工程师"
-url: https://tw93.fun
-repo: tw93/tw93.github.io
+title: ZZH
+description: "Python开发工程师"
+url: https://ZZH-0207.github.io
+repo: ZZH-0207/ZZH-0207.github.io
 lang: zh-CN
 encoding: utf-8
-timezone: Africa/El_Aaiun
-
-# Author Information (for SEO and AI crawlers)
-author:
-  name: Tw93
-  email: tw93@qq.com
-  url: https://tw93.fun
-  twitter: HiTw93
-  github: tw93
+timezone: Asia/Shanghai
 
 # Social Media and External URLs
-github: tw93
-zhihu: tw93
-twitter: HiTw93
-v2ex: tw93
+github: ZZH-0207
+zhihu: -
 menu:
-  - title: "About"
+  - title: "关于我"
     url: "/about.html"
-  - title: "Weekly"
-    url: "https://weekly.tw93.fun/"
+  - title: "主页"
+    url: "/categories.html"
 
 # SEO and Analytics
 google_analytics: G-KS7EDB6BRM
@@ -39,27 +29,21 @@ titlecase: true
 future: true
 highlighter: rouge
 markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  math_engine_opts: {}
 permalink: /:year-:month-:day/:title.html
 sass:
   sass_dir: _sass
   style: compressed
 
-webrick:
-  headers:
-    "Access-Control-Allow-Origin": "*"
-    "Access-Control-Allow-Methods": "GET, OPTIONS"
-    "Access-Control-Allow-Headers": "Content-Type, X-Requested-With"
-
 collections:
   posts:
     output: true
     permalink: /:year-:month-:day/:title.html
-  posts_en:
-    output: true
-    permalink: /en/:year-:month-:day/:title.html
-    sort_by: date
 
-include: [".htaccess", "robots.txt"]
+include: [".htaccess"]
 exclude:
   [
     "Gemfile",
@@ -68,8 +52,6 @@ exclude:
     "LICENSE",
     "package.json",
     "node_modules",
-    "SEO_GUIDE.md",
-    "CLAUDE.md",
   ]
 
 # Plugins
@@ -78,50 +60,3 @@ plugins:
   - jekyll-pdf-embed
   - jekyll-sitemap
   - jekyll-feed
-
-# Sitemap Settings
-defaults:
-  - scope:
-      path: "images/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: "js/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: "css/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: "_sass/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      sitemap:
-        priority: 0.8
-        changefreq: weekly
-  - scope:
-      path: ""
-      type: "posts_en"
-    values:
-      sitemap:
-        priority: 0.8
-        changefreq: weekly
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      sitemap:
-        priority: 0.6
-        changefreq: monthly
-
-# Custom Site Settings
-showBuyCoffee: true
-payImage: //gw.alipayobjects.com/zos/k/vb/1.png
-assetUrl: //tw93.fun/images/
-defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-
