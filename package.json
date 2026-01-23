@@ -1,23 +1,18 @@
 {
-  "name": "zhangzihao-blog",
-  "author": "zhangzihao",
-  "homepage": "https://ZZH-0207.github.io",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ZZH-0207/ZZH-0207.github.io"
-  },
-  "bugs": {
-    "url": "https://github.com/ZZH-0207/ZZH-0207.github.io/issues"
-  },
+  "name": "zzh-blog",
+  "version": "1.0.0",
+  "description": "ZZH Personal Blog",
+  "main": "index.js",
   "scripts": {
-    "prep": "gem install bundler && bundle install",
-    "dev": "bundle exec jekyll serve --watch --trace --livereload",
-    "clean": "if exist _site rmdir /s /q _site && if exist .jekyll-cache rmdir /s /q .jekyll-cache",
-    "start": "npm run dev",
-    "build": "bundle exec jekyll build",
-    "min": "uglifyjs ./js/index.js -o ./js/index.min.js  --comments all"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
+  "keywords": [],
+  "author": "ZZH",
+  "license": "MIT",
   "devDependencies": {
-    "uglify-js": "^2.7.5"
+    "vitepress": "^1.0.0",
+    "vue": "^3.0.0"
   }
 }
