@@ -1,5 +1,5 @@
 <script setup>
-import { data as posts } from './posts.data.ts'
+import { data as posts } from './.vitepress/posts.data.ts'
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString('zh-CN', {

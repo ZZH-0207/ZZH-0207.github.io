@@ -11,9 +11,9 @@ export default createContentLoader('posts/*.md', {
       })
       .map((page) => {
         return {
-          title: page.frontmatter.title,
+          title: page.frontmatter.title || 'Untitled',
           url: page.url,
-          date: page.frontmatter.date,
+          date: page.frontmatter.date || new Date(),
           tags: page.frontmatter.tags || [],
           category: page.frontmatter.category || 'Note',
           excerpt: page.excerpt

@@ -12,7 +12,7 @@ export default defineConfig({
       { text: '关于', link: '/about' }
     ],
 
-    sidebar: false, // 禁用默认侧边栏，因为我们主要展示文章列表
+    sidebar: [], // 禁用默认侧边栏，因为我们主要展示文章列表
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ZZH-0207' }

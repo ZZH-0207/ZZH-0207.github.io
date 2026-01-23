@@ -7,12 +7,14 @@ const activeCategory = ref('Code')
 
 const filteredPosts = computed(() => {
   return posts.filter(post => {
+    if (!post || !post.category) return false
     const postCategory = post.category || 'Note'
     return postCategory.toLowerCase() === activeCategory.value.toLowerCase()
   })
 })
 
 function formatDate(date) {
+  if (!date) return ''
   return new Date(date).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
@@ -39,9 +41,11 @@ function formatDate(date) {
       暂无 {{ activeCategory }} 分类下的文章
     </div>
     
-    <div v-else v-for="post in filteredPosts" :key="post.url" class="post-item">
-      <a :href="post.url" class="post-title">{{ post.title }}</a>
-      <span class="post-date">{{ formatDate(post.date) }}</span>
+    <div v-else class="post-list">
+      <div v-for="post in filteredPosts" :key="post.url" class="post-item">
+        <a :href="post.url" class="post-title">{{ post?.title || 'Untitled' }}</a>
+        <span class="post-date">{{ formatDate(post?.date) }}</span>
+      </div>
     </div>
   </div>
 </div>
