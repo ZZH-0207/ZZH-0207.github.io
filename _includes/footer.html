@@ -19,7 +19,7 @@
       </svg>
     </a>
 
-    <a href="{{ site.url }}/feed.xml" rel="nofollow" target="_blank" class="social-icon"
+    <a href="{{ '/feed.xml' | relative_url }}" rel="nofollow" target="_blank" class="social-icon"
       aria-label="Subscribe to RSS feed">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
@@ -29,19 +29,19 @@
     </a>
 
     <a href="https://github.com/{{site.repo}}" rel="nofollow" target="_blank" class="social-icon time-icon"
-      aria-label="View repository (2015 to {{ site.time | date: '%Y' }})">
+      aria-label="View repository (2026 to {{ site.time | date: '%Y' }})">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
           d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3Z">
         </path>
       </svg>
-      <span class="repo-time">2015~{{ site.time | date: '%Y' }}</span>
+      <span class="repo-time">2026~{{ site.time | date: '%Y' }}</span>
     </a>
   </footer>
 </div>
 
-<script type="text/javascript" src="{{ site.url }}/js/index.js" defer></script>
-<script type="text/javascript" src="{{ site.url }}/js/search.js" defer></script>
+<script type="text/javascript" src="{{ '/js/index.js' | relative_url }}" defer></script>
+<script type="text/javascript" src="{{ '/js/search.js' | relative_url }}" defer></script>
 
 {% if site.google_analytics %}
 <script>
@@ -67,28 +67,6 @@
   window.addEventListener('mousemove', triggerGA, { once: true });
   window.addEventListener('touchstart', triggerGA, { once: true });
   setTimeout(() => { if (!window.dataLayer.length) loadGA(); }, 5000);
-</script>
-{% endif %} {% if page.url=="/" %}
-<script>
-  function hereDoc (f) {
-    return f
-      .toString()
-      .replace(/^[^\/]+\/\*!?\s?/, "")
-      .replace(/\*\/[^\/]+$/, "");
-  }
-  var string = hereDoc(function () {
-    /*
-    _                               ___                  _____           _       _
-   | |                             |_  |                /  ___|         (_)     | |
-   | |     ___  __ _ _ __ _ __       | | __ ___   ____ _\ `--.  ___ _ __ _ _ __ | |_
-   | |    / _ \/ _` | '__| '_ \      | |/ _` \ \ / / _` |`--. \/ __| '__| | '_ \| __|
-   | |___|  __/ (_| | |  | | | | /\__/ / (_| |\ V / (_| /\__/ / (__| |  | | |_) | |_
-   \_____/\___|\__,_|_|  |_| |_| \____/ \__,_| \_/ \__,_\____/ \___|_|  |_| .__/ \__|
-
-   Hey, I'm Tw93, a Frontend Engineer from China with experience in Swift, Rust, Python, and Sketch. I've created MiaoYan, Mole, Pake, Trendy Weekly, XRender, and WeexUi. I believe in long-termism, love open source, and enjoy tinkering with new ideas.
-   */
-  });
-  console.log(string);
 </script>
 {% endif %}
 

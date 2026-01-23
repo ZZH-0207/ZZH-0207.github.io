@@ -31,7 +31,7 @@ body_id: post-index
     {% for post in site.categories[this_word] %}
     {% if post.title != null and post.hide != true %}
     <li>
-      <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">
+      <a href="{{ post.url | relative_url }}" title="{{ post.title }}">
         <span class="post-date">【{{ post.date | date: "%Y-%m-%d" }}】</span>{{ post.title }}
       </a>
     </li>

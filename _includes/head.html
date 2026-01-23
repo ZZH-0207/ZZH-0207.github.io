@@ -80,23 +80,21 @@
   <link rel="preconnect" href="https://www.googletagmanager.com">
 
   <!-- Styles and Scripts -->
-  <link rel="stylesheet" href="{{ site.url }}/css/index.css">
-  <link rel="stylesheet" href="{{ site.url }}/css/jinkai.css">
+  <link rel="stylesheet" href="{{ '/css/index.css' | relative_url }}">
 
   {% if page.layout == "post" %}
   <script src="//gw.alipayobjects.com/os/k/tw93/lazysizes.min.js" async defer></script>
   {% endif %}
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/png"
-    href="https://gw.alicdn.com/imgextra/i4/O1CN01XYYPwL1uheeXASHIQ_!!6000000006069-2-tps-420-420.png">
+  <link rel="shortcut icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
 
   <!-- Additional Meta Tags -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta http-equiv="cleartype" content="on">
   <meta name="format-detection" content="telephone=no">
-  <meta name="author" content="Tw93">
+  <meta name="author" content="{{ site.title }}">
   <meta name="robots" content="index, follow">
 
   <!-- Feed -->
