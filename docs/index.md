@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "ZZH 的博客"
-  text: "Python 开发工程师 | 技术爱好者"
+  text: "Python 开发工程师"
   tagline: "记录学习，分享生活，探索未知"
   actions:
     - theme: brand
