@@ -14,7 +14,7 @@ menu:
   - title: "关于我"
     url: "/about.html"
   - title: "主页"
-    url: "/categories.html"
+    url: "/homepage.html"
 
 # SEO and Analytics
 google_analytics: G-KS7EDB6BRM
