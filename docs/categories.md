@@ -39,18 +39,17 @@ function formatDate(date) {
   </div>
 
   <div class="category-content">
-    <div v-if="filteredPosts.length === 0" class="empty-state">
-      暂无 {{ activeCategory }} 分类下的文章
-    </div>
-    
-    <div v-else class="post-list">
-      <div v-for="(post, index) in filteredPosts" :key="index" class="post-item">
-        <div v-if="post">
-           <a :href="post?.url" class="post-title">{{ post?.title || post?.frontmatter?.title || 'Untitled' }}</a>
-           <span class="post-date">{{ formatDate(post?.date || post?.frontmatter?.date) }}</span>
-        </div>
+  <div v-if="filteredPosts.length === 0" class="empty-state">
+    暂无 {{ activeCategory }} 分类下的文章
+  </div>
+  <div v-else class="post-list">
+    <div v-for="(post, index) in filteredPosts" :key="index" class="post-item">
+      <div v-if="post">
+          <a :href="post?.url" class="post-title">{{ post?.title || post?.frontmatter?.title || 'Untitled' }}</a>
+          <span class="post-date">{{ formatDate(post?.date || post?.frontmatter?.date) }}</span>
       </div>
     </div>
+  </div>
   </div>
 </div>
 
