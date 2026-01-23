@@ -1,7 +1,7 @@
 # 关于我
 
-- Python 开发工程师 🧑‍💻🧑‍💻🧑‍💻
-- 个人邮箱：zhangzihao.dev@foxmail.com，欢迎来信交流 😙😙😙
+- Python 开发工程师
+- 个人邮箱：zhangzihao.dev@foxmail.com
 
 博客基于 [VitePress](https://vitepress.dev/) 重构。
 
