@@ -38,7 +38,9 @@ export default createContentLoader('posts/*.md', {
       })
       .filter(page => page.title !== 'Untitled') // Filter out pages that didn't parse correctly if needed
       .sort((a, b) => {
-        return +b.date - +a.date
+        const dateA = a.date ? +a.date : 0
+        const dateB = b.date ? +b.date : 0
+        return dateB - dateA
       })
   }
 })
