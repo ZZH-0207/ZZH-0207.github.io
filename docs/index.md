@@ -1,26 +1,12 @@
 ---
-layout: home
-
-hero:
-  name: "ZZH's Blog"
-  text: "Code, Note & Paper"
-  tagline: "分享技术心得与生活点滴"
-  actions:
-    - theme: brand
-      text: 浏览文章
-      link: /categories
-    - theme: alt
-      text: 关于我
-      link: /about
-
-features:
-  - title: 💻 Code
-    details: 记录编程学习之路，分享技术解决方案。
-  - title: 📝 Note
-    details: 随手记录生活灵感与学习笔记。
-  - title: 📄 Paper
-    details: 论文阅读与学术研究心得。
+title: Home
 ---
+
+# ZZH's Blog
+
+<p class="subtitle">Code, Note & Paper</p>
+
+<div class="divider"></div>
 
 <script setup>
 import { data as posts } from './.vitepress/posts.data.ts'
@@ -79,16 +65,17 @@ function formatDate(date) {
   margin-left: 1rem;
 }
 
-/* Hero Title Gradient */
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--vp-c-text-2);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
-.VPHero .name {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: var(--vp-home-hero-name-color);
-  background-image: var(--vp-home-hero-name-background);
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--vp-c-divider-light);
+  margin-bottom: 2rem;
 }
 </style>
