@@ -2,9 +2,6 @@
 title: Home
 ---
 
-# ZZH's Blog
-
-<p class="subtitle">Code, Note & Paper</p>
 
 <div class="divider"></div>
 
