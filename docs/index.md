@@ -2,9 +2,6 @@
 title: Home
 ---
 
-
-<div class="divider"></div>
-
 <script setup>
 import { data as posts } from './.vitepress/posts.data.ts'
 
