@@ -1,4 +1,3 @@
-## 学习numpy数组堆叠常用操作
 ### vstack, hstack, concatenate, column_stack, r_, c_
 
 #### vstack && hstack
