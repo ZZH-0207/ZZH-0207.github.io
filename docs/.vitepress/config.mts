@@ -14,6 +14,11 @@ export default defineConfig({
 
     sidebar: [], // 禁用默认侧边栏，因为我们主要展示文章列表
 
+    outline: {
+      level: [2, 4], // 显示 h2 到 h4 的标题
+      label: '页面导航'
+    },
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ZZH-0207' }
     ]
