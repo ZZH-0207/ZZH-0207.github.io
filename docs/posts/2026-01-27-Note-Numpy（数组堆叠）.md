@@ -1,4 +1,6 @@
+## 学习numpy数组堆叠常用操作
 ### vstack, hstack, concatenate, column_stack, r_, c_
+
 #### vstack && hstack
 以二维数组为例，vstack表示vertical stack，垂直堆叠。hstack表示horizontal stack，表示水平堆叠。
 
