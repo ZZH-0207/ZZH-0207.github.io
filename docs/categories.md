@@ -22,6 +22,12 @@ function formatDate(date) {
 }
 </script>
 
+<div class="page-hero">
+  <p class="hero-eyebrow">Categories</p>
+  <h1 class="hero-title">按主题浏览</h1>
+  <p class="hero-subtitle">精选内容，清晰归类。</p>
+</div>
+
 <div class="categories-container">
   <div class="tabs">
     <button 
@@ -51,50 +57,87 @@ function formatDate(date) {
 </div>
 
 <style>
+.page-hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3.5rem 1rem 1.5rem;
+}
+
+.hero-eyebrow {
+  font-size: 0.95rem;
+  color: var(--vp-c-text-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 0.6rem;
+  color: var(--vp-c-text-1);
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--vp-c-text-2);
+  margin-top: 0.8rem;
+}
+
 .categories-container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 2.5rem 1rem;
+  padding: 0 1rem 4rem;
 }
 
 .tabs {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2.2rem;
-  border-bottom: 1px solid var(--vp-c-divider-light);
-  padding-bottom: 0.6rem;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .tab-button {
-  padding: 0.4rem 0;
-  border-radius: 0;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid transparent;
   cursor: pointer;
   font-weight: 500;
   color: var(--vp-c-text-2);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .tab-button.active {
   color: var(--vp-c-text-1);
-  border-bottom-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  border-color: var(--vp-c-brand-1);
 }
 
 .tab-button:hover:not(.active) {
   color: var(--vp-c-text-1);
+  border-color: var(--vp-c-divider);
 }
 
 .post-item {
-  border-bottom: 1px solid var(--vp-c-divider-light);
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--vp-c-divider-light);
+  border-radius: 14px;
+  background: var(--vp-c-bg-soft);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--vp-c-divider);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
 .post-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.9rem 0;
   gap: 1rem;
 }
 
@@ -110,15 +153,15 @@ function formatDate(date) {
 }
 
 .post-date {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--vp-c-text-2);
   white-space: nowrap;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .empty-state {
   text-align: center;
-  padding: 3rem;
+  padding: 3.5rem;
   color: var(--vp-c-text-2);
 }
 </style>

@@ -43,7 +43,11 @@ export default defineConfig({
 }
 
 body {
-  background-color: var(--vp-c-bg);
+  background: linear-gradient(180deg, var(--vp-c-bg) 0%, rgba(247, 248, 250, 0.6) 100%);
+}
+
+:root.dark body {
+  background: linear-gradient(180deg, var(--vp-c-bg) 0%, rgba(15, 17, 21, 0.6) 100%);
 }
 
 .VPNav {
@@ -56,9 +60,30 @@ body {
   background-color: rgba(15, 17, 21, 0.9);
 }
 
+.VPNavBarTitle .title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.VPNavBarMenuLink {
+  color: var(--vp-c-text-2);
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-text-1);
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-text-1);
+}
+
 .VPDoc {
   line-height: 1.85;
   font-size: 16px;
+}
+
+.VPContent {
+  padding-top: 24px;
 }
 
 .VPDoc h1,
