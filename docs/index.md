@@ -24,8 +24,8 @@ onMounted(() => {
   
   // 粒子配置
   const particles = []
-  const count = 80 // 增加粒子数量以适应全屏
-  const connectionDistance = 160
+  const count = 120 // 大幅增加粒子数量
+  const connectionDistance = 120
   
   class Particle {
     constructor() {
@@ -35,10 +35,10 @@ onMounted(() => {
     reset() {
       this.x = Math.random() * width
       this.y = Math.random() * height
-      this.vx = (Math.random() - 0.5) * 0.6
-      this.vy = (Math.random() - 0.5) * 0.6
-      this.radius = Math.random() * 2 + 1
-      this.alpha = Math.random() * 0.4 + 0.05 // 降低透明度，避免干扰内容
+      this.vx = (Math.random() - 0.5) * 0.4
+      this.vy = (Math.random() - 0.5) * 0.4
+      this.radius = Math.random() * 1.5 + 0.5
+      this.alpha = Math.random() * 0.3 + 0.05
     }
     
     update() {
@@ -79,7 +79,7 @@ onMounted(() => {
           ctx.beginPath()
           ctx.moveTo(p.x, p.y)
           ctx.lineTo(p2.x, p2.y)
-          ctx.strokeStyle = `rgba(47, 111, 106, ${0.08 * (1 - dist / connectionDistance)})` // 降低连线透明度
+          ctx.strokeStyle = `rgba(47, 111, 106, ${0.06 * (1 - dist / connectionDistance)})`
           ctx.stroke()
         }
       }
@@ -132,16 +132,16 @@ onMounted(() => {
 .page-hero {
   max-width: 100%;
   margin: 0 auto;
-  padding: 12vh 1rem 8vh;
+  padding: 6vh 1rem 4vh;
   position: relative;
   overflow: hidden;
   background: transparent;
   border-bottom: 1px solid var(--vp-c-divider-light);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 45vh;
+  min-height: 25vh;
   z-index: 1;
 }
 
@@ -154,18 +154,18 @@ onMounted(() => {
 }
 
 .hero-eyebrow {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--vp-c-brand-1);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   opacity: 0;
   animation: fadeUp 0.8s ease-out forwards;
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-top: 0;
