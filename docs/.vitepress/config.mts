@@ -78,6 +78,46 @@ body {
   color: var(--vp-c-text-1);
 }
 
+.VPContent.is-home {
+  position: relative;
+}
+
+.VPContent.is-home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1200px, 92vw);
+  height: 280px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 20% 20%, rgba(47, 111, 106, 0.14), transparent 60%),
+    radial-gradient(circle at 80% 10%, rgba(35, 79, 76, 0.12), transparent 55%);
+  filter: blur(18px);
+  animation: homeGlow 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.VPContent.is-home > .VPDoc {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes homeGlow {
+  0% {
+    opacity: 0.7;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(6px) scale(1.03);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
 .VPDoc {
   line-height: 1.8;
   font-size: 16px;

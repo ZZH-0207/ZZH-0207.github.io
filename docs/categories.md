@@ -60,6 +60,38 @@ function formatDate(date) {
   max-width: 720px;
   margin: 0 auto;
   padding: 3.2rem 1rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: -60% -40% auto -40%;
+  height: 220px;
+  background: radial-gradient(circle at 25% 30%, rgba(47, 111, 106, 0.16), transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(41, 95, 91, 0.12), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(35, 79, 76, 0.1), transparent 60%);
+  filter: blur(12px);
+  animation: heroFloat 16s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes heroFloat {
+  0% {
+    transform: translate3d(-2%, -6%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, 4%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-2%, -6%, 0) scale(1);
+  }
 }
 
 .hero-eyebrow {
