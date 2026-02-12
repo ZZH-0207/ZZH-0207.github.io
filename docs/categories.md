@@ -23,8 +23,10 @@ function formatDate(date) {
 </script>
 
 <div class="page-hero">
-  <p class="hero-eyebrow">Categories</p>
-  <h1 class="hero-title">分类</h1>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Categories</p>
+    <h1 class="hero-title">按主题浏览</h1>
+  </div>
 </div>
 
 <div class="categories-container">
@@ -57,135 +59,166 @@ function formatDate(date) {
 
 <style>
 .page-hero {
-  max-width: 720px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 3.2rem 1rem 1.2rem;
+  padding: 5rem 1rem 3rem;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(180deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg) 100%);
+  border-bottom: 1px solid var(--vp-c-divider-light);
+  margin-bottom: 2rem;
 }
 
-.page-hero::before {
-  content: '';
-  position: absolute;
-  inset: -60% -40% auto -40%;
-  height: 220px;
-  background: radial-gradient(circle at 25% 30%, rgba(47, 111, 106, 0.16), transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(41, 95, 91, 0.12), transparent 55%),
-    radial-gradient(circle at 50% 80%, rgba(35, 79, 76, 0.1), transparent 60%);
-  filter: blur(12px);
-  animation: heroFloat 16s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.page-hero > * {
+.hero-content {
   position: relative;
   z-index: 1;
-}
-
-@keyframes heroFloat {
-  0% {
-    transform: translate3d(-2%, -6%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(2%, 4%, 0) scale(1.04);
-  }
-  100% {
-    transform: translate3d(-2%, -6%, 0) scale(1);
-  }
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-eyebrow {
   font-size: 0.95rem;
-  color: var(--vp-c-text-3);
-  letter-spacing: 0.14em;
+  color: var(--vp-c-brand-1);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
 }
 
 .hero-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-top: 0.6rem;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 0;
   color: var(--vp-c-text-1);
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .categories-container {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 0 1rem 3.5rem;
+  padding: 0 1.5rem 4rem;
 }
 
 .tabs {
   display: flex;
-  gap: 0.6rem;
-  margin-bottom: 1.6rem;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tab-button {
-  padding: 0.35rem 0.9rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 999px;
   background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider-light);
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.95rem;
   color: var(--vp-c-text-2);
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 
 .tab-button.active {
-  color: var(--vp-c-text-1);
-  background: var(--vp-c-bg-soft);
-  border-color: var(--vp-c-divider);
+  color: white;
+  background: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(47, 111, 106, 0.2);
+  transform: translateY(-1px);
 }
 
 .tab-button:hover:not(.active) {
   color: var(--vp-c-text-1);
   border-color: var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
 }
 
 .post-item {
-  padding: 1.1rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--vp-c-divider-light);
-  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 16px;
   background: var(--vp-c-bg);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.post-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--vp-c-brand-1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .post-item:hover {
-  border-color: var(--vp-c-divider);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border-color: var(--vp-c-brand-soft);
+}
+
+.post-item:hover::before {
+  opacity: 1;
 }
 
 .post-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .post-title {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
   text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .post-title:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .post-date {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   color: var(--vp-c-text-3);
+  margin-left: auto;
   white-space: nowrap;
-  margin-left: 2rem;
+  font-variant-numeric: tabular-nums;
+  background: var(--vp-c-bg-soft);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
 }
 
 .empty-state {
   text-align: center;
-  padding: 3.5rem;
+  padding: 4rem;
   color: var(--vp-c-text-2);
+  font-size: 1.1rem;
 }
 </style>

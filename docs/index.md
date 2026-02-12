@@ -4,17 +4,104 @@ title: Home
 
 <script setup>
 import { data as posts } from './.vitepress/posts.data.ts'
+import { onMounted, ref } from 'vue'
+
+const canvasRef = ref(null)
 
 function formatDate(date) {
   if (!date) return ''
   const d = new Date(date)
   return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 }
+
+onMounted(() => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+  
+  const ctx = canvas.getContext('2d')
+  let width = canvas.width = canvas.offsetWidth
+  let height = canvas.height = canvas.offsetHeight
+  
+  // 粒子配置
+  const particles = []
+  const count = 30
+  
+  class Particle {
+    constructor() {
+      this.reset()
+    }
+    
+    reset() {
+      this.x = Math.random() * width
+      this.y = Math.random() * height
+      this.vx = (Math.random() - 0.5) * 0.5
+      this.vy = (Math.random() - 0.5) * 0.5
+      this.radius = Math.random() * 2 + 1
+      this.alpha = Math.random() * 0.5 + 0.1
+    }
+    
+    update() {
+      this.x += this.vx
+      this.y += this.vy
+      
+      if (this.x < 0 || this.x > width) this.vx *= -1
+      if (this.y < 0 || this.y > height) this.vy *= -1
+    }
+    
+    draw() {
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(47, 111, 106, ${this.alpha})`
+      ctx.fill()
+    }
+  }
+  
+  for (let i = 0; i < count; i++) {
+    particles.push(new Particle())
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, width, height)
+    
+    particles.forEach((p, i) => {
+      p.update()
+      p.draw()
+      
+      // 连线
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j]
+        const dx = p.x - p2.x
+        const dy = p.y - p2.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        
+        if (dist < 100) {
+          ctx.beginPath()
+          ctx.moveTo(p.x, p.y)
+          ctx.lineTo(p2.x, p2.y)
+          ctx.strokeStyle = `rgba(47, 111, 106, ${0.1 * (1 - dist / 100)})`
+          ctx.stroke()
+        }
+      }
+    })
+    
+    requestAnimationFrame(animate)
+  }
+  
+  animate()
+  
+  window.addEventListener('resize', () => {
+    width = canvas.width = canvas.offsetWidth
+    height = canvas.height = canvas.offsetHeight
+  })
+})
 </script>
 
 <div class="page-hero">
-  <p class="hero-eyebrow">ZZH's Blog</p>
-  <h1 class="hero-title">文章列表</h1>
+  <canvas ref="canvasRef" class="hero-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">ZZH's Blog</p>
+    <h1 class="hero-title">文章列表</h1>
+  </div>
 </div>
 
 <div class="posts-container">
@@ -30,101 +117,137 @@ function formatDate(date) {
 
 <style>
 .page-hero {
-  max-width: 720px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 3.2rem 1rem 1.5rem;
+  padding: 6rem 1rem 3rem;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(180deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg) 100%);
+  border-bottom: 1px solid var(--vp-c-divider-light);
+  margin-bottom: 2rem;
 }
 
-.page-hero::before {
-  content: '';
+.hero-canvas {
   position: absolute;
-  inset: -60% -40% auto -40%;
-  height: 240px;
-  background: radial-gradient(circle at 20% 30%, rgba(47, 111, 106, 0.18), transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(41, 95, 91, 0.14), transparent 55%),
-    radial-gradient(circle at 50% 80%, rgba(35, 79, 76, 0.12), transparent 60%);
-  filter: blur(12px);
-  animation: heroFloat 14s ease-in-out infinite;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.6;
 }
 
-.page-hero > * {
+.hero-content {
   position: relative;
   z-index: 1;
-}
-
-@keyframes heroFloat {
-  0% {
-    transform: translate3d(-2%, -6%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(2%, 4%, 0) scale(1.04);
-  }
-  100% {
-    transform: translate3d(-2%, -6%, 0) scale(1);
-  }
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-eyebrow {
   font-size: 0.95rem;
-  color: var(--vp-c-text-3);
-  letter-spacing: 0.14em;
+  color: var(--vp-c-brand-1);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
 }
 
 .hero-title {
-  font-size: 2.1rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-top: 0.6rem;
-  color: var(--vp-c-text-1);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 0;
+  background: linear-gradient(135deg, var(--vp-c-text-1) 30%, var(--vp-c-brand-1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .posts-container {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 0 1rem 3.5rem;
+  padding: 0 1.5rem 4rem;
 }
 
 .post-item {
-  padding: 1.1rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--vp-c-divider-light);
-  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 16px;
   background: var(--vp-c-bg);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.post-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--vp-c-brand-1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .post-item:hover {
-  border-color: var(--vp-c-divider);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border-color: var(--vp-c-brand-soft);
+}
+
+.post-item:hover::before {
+  opacity: 1;
 }
 
 .post-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .post-title {
-  font-size: 1.02rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
   text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .post-title:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .post-date {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   color: var(--vp-c-text-3);
-  margin-left: 2rem;
+  margin-left: auto;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  background: var(--vp-c-bg-soft);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
 }
 
 .subtitle {

@@ -10,7 +10,7 @@ export default defineConfig({
       {},
       `
 :root {
-  --vp-font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --vp-font-family-base: "Inter", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --vp-c-brand-1: #2f6f6a;
   --vp-c-brand-2: #295f5b;
   --vp-c-brand-3: #234f4c;
@@ -44,6 +44,13 @@ export default defineConfig({
 
 body {
   background: var(--vp-c-bg);
+  opacity: 0;
+  animation: pageFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 :root.dark body {
@@ -51,105 +58,76 @@ body {
 }
 
 .VPNav {
-  background-color: rgba(248, 247, 245, 0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--vp-c-divider-light);
+  background-color: rgba(248, 247, 245, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(229, 225, 219, 0.6);
 }
 
 :root.dark .VPNav {
-  background-color: rgba(15, 17, 19, 0.9);
+  background-color: rgba(15, 17, 19, 0.85);
+  border-bottom: 1px solid rgba(35, 40, 46, 0.6);
 }
 
 .VPNavBarTitle .title {
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 1.1rem;
 }
 
 .VPNavBarMenuLink {
   color: var(--vp-c-text-2);
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .VPNavBarMenuLink:hover {
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-brand-1);
 }
 
 .VPNavBarMenuLink.active {
   color: var(--vp-c-text-1);
-}
-
-.VPContent.is-home {
-  position: relative;
-}
-
-.VPContent.is-home::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: min(1200px, 92vw);
-  height: 280px;
-  transform: translateX(-50%);
-  background: radial-gradient(circle at 20% 20%, rgba(47, 111, 106, 0.14), transparent 60%),
-    radial-gradient(circle at 80% 10%, rgba(35, 79, 76, 0.12), transparent 55%);
-  filter: blur(18px);
-  animation: homeGlow 18s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.VPContent.is-home > .VPDoc {
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes homeGlow {
-  0% {
-    opacity: 0.7;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(6px) scale(1.03);
-  }
-  100% {
-    opacity: 0.7;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
+  font-weight: 600;
 }
 
 .VPDoc {
   line-height: 1.8;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .VPContent {
-  padding-top: 28px;
+  padding-top: 0;
 }
 
 .VPDoc h1,
 .VPDoc h2,
 .VPDoc h3,
 .VPDoc h4 {
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 .VPDoc a {
   text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
 .VPDoc a:hover {
   color: var(--vp-c-brand-1);
+  border-bottom-color: var(--vp-c-brand-1);
 }
 
 .VPDoc pre,
 .VPDoc code {
-  border-radius: 12px;
+  border-radius: 8px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 
 .VPDoc pre {
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider-light);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
 }
 
 .VPDocOutline {
@@ -158,10 +136,17 @@ body {
 
 .VPDocOutlineItem .outline-link {
   color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.VPDocOutlineItem .outline-link:hover {
+  color: var(--vp-c-text-1);
 }
 
 .VPDocOutlineItem .outline-link.active {
   color: var(--vp-c-brand-1);
+  font-weight: 500;
 }
       `
     ]
