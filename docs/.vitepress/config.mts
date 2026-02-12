@@ -10,54 +10,54 @@ export default defineConfig({
       {},
       `
 :root {
-  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --vp-c-brand-1: #3a6ea5;
-  --vp-c-brand-2: #315f90;
-  --vp-c-brand-3: #2a517a;
-  --vp-c-brand-soft: rgba(58, 110, 165, 0.14);
-  --vp-c-bg: #f7f8fa;
-  --vp-c-bg-soft: #f0f3f7;
-  --vp-c-bg-mute: #e7ebf2;
-  --vp-c-divider: #dfe5ee;
-  --vp-c-divider-light: #edf1f6;
+  --vp-font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --vp-c-brand-1: #2f6f6a;
+  --vp-c-brand-2: #295f5b;
+  --vp-c-brand-3: #234f4c;
+  --vp-c-brand-soft: rgba(47, 111, 106, 0.12);
+  --vp-c-bg: #f8f7f5;
+  --vp-c-bg-soft: #f3f1ee;
+  --vp-c-bg-mute: #ece8e3;
+  --vp-c-divider: #e5e1db;
+  --vp-c-divider-light: #efebe5;
   --vp-c-text-1: #1f2328;
   --vp-c-text-2: #4b5563;
-  --vp-c-text-3: #6b7280;
+  --vp-c-text-3: #707781;
   --vp-layout-max-width: 1120px;
   --vp-content-max-width: 760px;
 }
 
 :root.dark {
-  --vp-c-brand-1: #7aa2ff;
-  --vp-c-brand-2: #6a8ff0;
-  --vp-c-brand-3: #5b7edc;
-  --vp-c-brand-soft: rgba(122, 162, 255, 0.18);
-  --vp-c-bg: #0f1115;
-  --vp-c-bg-soft: #151820;
-  --vp-c-bg-mute: #1b1f2a;
-  --vp-c-divider: #242a36;
-  --vp-c-divider-light: #1f2430;
+  --vp-c-brand-1: #8dc3be;
+  --vp-c-brand-2: #7bb3ae;
+  --vp-c-brand-3: #6aa39f;
+  --vp-c-brand-soft: rgba(141, 195, 190, 0.2);
+  --vp-c-bg: #0f1113;
+  --vp-c-bg-soft: #15181b;
+  --vp-c-bg-mute: #1b1f23;
+  --vp-c-divider: #23282e;
+  --vp-c-divider-light: #1f2328;
   --vp-c-text-1: #e6e8ee;
-  --vp-c-text-2: #b5bcc7;
-  --vp-c-text-3: #8b95a7;
+  --vp-c-text-2: #b9c0cb;
+  --vp-c-text-3: #8e97a6;
 }
 
 body {
-  background: linear-gradient(180deg, var(--vp-c-bg) 0%, rgba(247, 248, 250, 0.6) 100%);
+  background: var(--vp-c-bg);
 }
 
 :root.dark body {
-  background: linear-gradient(180deg, var(--vp-c-bg) 0%, rgba(15, 17, 21, 0.6) 100%);
+  background: var(--vp-c-bg);
 }
 
 .VPNav {
-  background-color: rgba(247, 248, 250, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--vp-c-divider);
+  background-color: rgba(248, 247, 245, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--vp-c-divider-light);
 }
 
 :root.dark .VPNav {
-  background-color: rgba(15, 17, 21, 0.9);
+  background-color: rgba(15, 17, 19, 0.9);
 }
 
 .VPNavBarTitle .title {
@@ -67,6 +67,7 @@ body {
 
 .VPNavBarMenuLink {
   color: var(--vp-c-text-2);
+  font-weight: 500;
 }
 
 .VPNavBarMenuLink:hover {
@@ -78,12 +79,12 @@ body {
 }
 
 .VPDoc {
-  line-height: 1.85;
+  line-height: 1.8;
   font-size: 16px;
 }
 
 .VPContent {
-  padding-top: 24px;
+  padding-top: 28px;
 }
 
 .VPDoc h1,
@@ -103,7 +104,7 @@ body {
 
 .VPDoc pre,
 .VPDoc code {
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .VPDoc pre {

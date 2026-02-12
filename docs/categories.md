@@ -24,8 +24,7 @@ function formatDate(date) {
 
 <div class="page-hero">
   <p class="hero-eyebrow">Categories</p>
-  <h1 class="hero-title">按主题浏览</h1>
-  <p class="hero-subtitle">精选内容，清晰归类。</p>
+  <h1 class="hero-title">分类</h1>
 </div>
 
 <div class="categories-container">
@@ -60,7 +59,7 @@ function formatDate(date) {
 .page-hero {
   max-width: 720px;
   margin: 0 auto;
-  padding: 3.5rem 1rem 1.5rem;
+  padding: 3.2rem 1rem 1.2rem;
 }
 
 .hero-eyebrow {
@@ -78,30 +77,24 @@ function formatDate(date) {
   color: var(--vp-c-text-1);
 }
 
-.hero-subtitle {
-  font-size: 1.05rem;
-  color: var(--vp-c-text-2);
-  margin-top: 0.8rem;
-}
-
 .categories-container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 1rem 4rem;
+  padding: 0 1rem 3.5rem;
 }
 
 .tabs {
   display: flex;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
+  gap: 0.6rem;
+  margin-bottom: 1.6rem;
   flex-wrap: wrap;
 }
 
 .tab-button {
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid transparent;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider-light);
   cursor: pointer;
   font-weight: 500;
   color: var(--vp-c-text-2);
@@ -110,8 +103,8 @@ function formatDate(date) {
 
 .tab-button.active {
   color: var(--vp-c-text-1);
-  background: var(--vp-c-brand-soft);
-  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-divider);
 }
 
 .tab-button:hover:not(.active) {
@@ -120,18 +113,17 @@ function formatDate(date) {
 }
 
 .post-item {
-  padding: 1.2rem 1.4rem;
+  padding: 1.1rem 1.25rem;
   margin-bottom: 1rem;
   border: 1px solid var(--vp-c-divider-light);
-  border-radius: 14px;
-  background: var(--vp-c-bg-soft);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-item:hover {
-  transform: translateY(-2px);
   border-color: var(--vp-c-divider);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 .post-row {
@@ -153,8 +145,8 @@ function formatDate(date) {
 }
 
 .post-date {
-  font-size: 0.98rem;
-  color: var(--vp-c-text-2);
+  font-size: 0.96rem;
+  color: var(--vp-c-text-3);
   white-space: nowrap;
   margin-left: 2rem;
 }
