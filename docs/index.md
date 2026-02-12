@@ -25,14 +25,13 @@ function formatDate(date) {
 
 <style>
 .posts-container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
 }
 
 .post-item {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  padding: 0.9rem 0;
   border-bottom: 1px solid var(--vp-c-divider-light);
 }
 
@@ -40,11 +39,12 @@ function formatDate(date) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .post-title {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
   text-decoration: none;
 }
@@ -54,9 +54,10 @@ function formatDate(date) {
 }
 
 .post-date {
-  font-size: 1.2rem;
-  color: var(--vp-c-text-1);
+  font-size: 1.05rem;
+  color: var(--vp-c-text-2);
   margin-left: 1rem;
+  white-space: nowrap;
 }
 
 .subtitle {

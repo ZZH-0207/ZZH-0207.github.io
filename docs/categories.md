@@ -52,36 +52,38 @@ function formatDate(date) {
 
 <style>
 .categories-container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
 }
 
 .tabs {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 2.2rem;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+  padding-bottom: 0.6rem;
 }
 
 .tab-button {
-  padding: 0.5rem 1.5rem;
-  border-radius: 20px;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid transparent;
+  padding: 0.4rem 0;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.3s;
+  color: var(--vp-c-text-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .tab-button.active {
-  background: var(--vp-c-brand);
-  color: white;
+  color: var(--vp-c-text-1);
+  border-bottom-color: var(--vp-c-brand-1);
 }
 
 .tab-button:hover:not(.active) {
-  background: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-1);
 }
 
 .post-item {
@@ -92,12 +94,13 @@ function formatDate(date) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.9rem 0;
+  gap: 1rem;
 }
 
 .post-title {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
   text-decoration: none;
 }
@@ -107,8 +110,8 @@ function formatDate(date) {
 }
 
 .post-date {
-  font-size: 1.1rem;
-  color: var(--vp-c-text-1);
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
   white-space: nowrap;
   margin-left: 1rem;
 }

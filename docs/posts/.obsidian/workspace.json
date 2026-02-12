@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "89468991b058de7d",
+        "id": "f0eae2c49bc5eb25",
         "type": "tabs",
         "children": [
           {
-            "id": "e6f7c7de44ed2747",
+            "id": "519d7b09478526eb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2026-01-29-Note-NumPy高级索引方式.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2026-01-29-Note-NumPy高级索引方式"
+              "title": "新标签页"
             }
           }
         ]
@@ -183,8 +179,13 @@
       "bases:新建数据库": false
     }
   },
-  "active": "e6f7c7de44ed2747",
+  "active": "519d7b09478526eb",
   "lastOpenFiles": [
+    "2026-02-03-Note-NumPy创建数组.md",
+    "2026-01-29-Note-NumPy高级索引方式.md",
+    "2026-01-28-Note-NumPy广播机制（Broadcasting rules）.md",
+    "2026-01-27-Note-NumPy数组堆叠常用操作.md",
+    "2026-01-30.md",
     "2026-01-27-Note-Numpy数组堆叠常用操作.md",
     "2026-01-28-Note-Numpy广播机制（Broadcasting rules）.md",
     "2026-01-28-Paper-Reliably Bounding False Positives：A Zero-Shot Machine-Generated Text Detection Framework via Multiscaled Conformal Prediction.md",
