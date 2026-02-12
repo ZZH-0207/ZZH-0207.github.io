@@ -1,3 +1,8 @@
+---
+title: Categories
+layout: home
+---
+
 <script setup>
 import { data as posts } from './.vitepress/posts.data.ts'
 import { computed, ref } from 'vue'
