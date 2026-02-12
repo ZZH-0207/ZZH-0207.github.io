@@ -19,13 +19,13 @@ onMounted(() => {
   if (!canvas) return
   
   const ctx = canvas.getContext('2d')
-  let width = canvas.width = canvas.offsetWidth
-  let height = canvas.height = canvas.offsetHeight
+  let width = canvas.width = window.innerWidth
+  let height = canvas.height = window.innerHeight
   
   // 粒子配置
   const particles = []
-  const count = 50 // 增加粒子数量
-  const connectionDistance = 140 // 增加连线距离
+  const count = 80 // 增加粒子数量以适应全屏
+  const connectionDistance = 160
   
   class Particle {
     constructor() {
@@ -35,10 +35,10 @@ onMounted(() => {
     reset() {
       this.x = Math.random() * width
       this.y = Math.random() * height
-      this.vx = (Math.random() - 0.5) * 0.8 // 增加速度
-      this.vy = (Math.random() - 0.5) * 0.8
+      this.vx = (Math.random() - 0.5) * 0.6
+      this.vy = (Math.random() - 0.5) * 0.6
       this.radius = Math.random() * 2 + 1
-      this.alpha = Math.random() * 0.5 + 0.1
+      this.alpha = Math.random() * 0.4 + 0.05 // 降低透明度，避免干扰内容
     }
     
     update() {
@@ -79,7 +79,7 @@ onMounted(() => {
           ctx.beginPath()
           ctx.moveTo(p.x, p.y)
           ctx.lineTo(p2.x, p2.y)
-          ctx.strokeStyle = `rgba(47, 111, 106, ${0.12 * (1 - dist / connectionDistance)})`
+          ctx.strokeStyle = `rgba(47, 111, 106, ${0.08 * (1 - dist / connectionDistance)})` // 降低连线透明度
           ctx.stroke()
         }
       }
@@ -91,14 +91,15 @@ onMounted(() => {
   animate()
   
   window.addEventListener('resize', () => {
-    width = canvas.width = canvas.offsetWidth
-    height = canvas.height = canvas.offsetHeight
+    width = canvas.width = window.innerWidth
+    height = canvas.height = window.innerHeight
   })
 })
 </script>
 
+<canvas ref="canvasRef" class="global-canvas"></canvas>
+
 <div class="page-hero">
-  <canvas ref="canvasRef" class="hero-canvas"></canvas>
   <div class="hero-content">
     <p class="hero-eyebrow">ZZH's Blog</p>
     <h1 class="hero-title">文章列表</h1>
@@ -117,29 +118,31 @@ onMounted(() => {
 </div>
 
 <style>
+.global-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 .page-hero {
   max-width: 100%;
   margin: 0 auto;
   padding: 12vh 1rem 8vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg) 100%);
+  background: transparent;
   border-bottom: 1px solid var(--vp-c-divider-light);
   margin-bottom: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 45vh;
-}
-
-.hero-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.6;
+  z-index: 1;
 }
 
 .hero-content {
@@ -188,6 +191,8 @@ onMounted(() => {
   max-width: 760px;
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
 }
 
 .post-item {
@@ -195,11 +200,16 @@ onMounted(() => {
   margin-bottom: 1.2rem;
   border: 1px solid transparent;
   border-radius: 16px;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
+}
+
+:root.dark .post-item {
+  background: rgba(30, 30, 32, 0.6);
 }
 
 .post-item::before {
