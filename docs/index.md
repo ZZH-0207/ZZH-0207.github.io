@@ -25,8 +25,8 @@ onMounted(() => {
   
   // 粒子配置
   const particles = []
-  const count = 120 // 大幅增加粒子数量
-  const connectionDistance = 120
+  const count = 180 // 大幅增加粒子数量
+  const connectionDistance = 180
   
   class Particle {
     constructor() {
@@ -36,8 +36,8 @@ onMounted(() => {
     reset() {
       this.x = Math.random() * width
       this.y = Math.random() * height
-      this.vx = (Math.random() - 0.5) * 0.4
-      this.vy = (Math.random() - 0.5) * 0.4
+      this.vx = (Math.random() - 0.5) * 0.6
+      this.vy = (Math.random() - 0.5) * 0.6
       this.radius = Math.random() * 1.5 + 0.5
       this.alpha = Math.random() * 0.3 + 0.05
     }
