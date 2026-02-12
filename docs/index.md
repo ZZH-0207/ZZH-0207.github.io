@@ -36,9 +36,9 @@ onMounted(() => {
     reset() {
       this.x = Math.random() * width
       this.y = Math.random() * height
-      this.vx = (Math.random() - 0.5) * 0.6
-      this.vy = (Math.random() - 0.5) * 0.6
-      this.radius = Math.random() * 1.5 + 0.5
+      this.vx = (Math.random() - 0.5) * 0.8
+      this.vy = (Math.random() - 0.5) * 0.8
+      this.radius = Math.random() * 1.5 + 0.8
       this.alpha = Math.random() * 0.3 + 0.05
     }
     
